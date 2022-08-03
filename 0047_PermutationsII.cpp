@@ -27,7 +27,7 @@ public:
             {
                 if(i > 0 and 
                    nums[i] == nums[i-1] and
-                   freq[i-1] !=0 )
+                   freq[i-1] == 0 )
                 {
                     continue;
                 }

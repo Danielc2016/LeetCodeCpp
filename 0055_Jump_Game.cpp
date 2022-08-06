@@ -46,14 +46,11 @@ public:
         for (int i = 1; i < n; i++)
         {
             for (int j = i - 1; j >= 0; j--)
-            // Here we are traversing backward
-            // We are checking for every position from last that whether we
-            // can reach that ith index with current position and jump or not
+            // traversing backward to see if we can reach ith index
             {
                 if (dp[j] && j + nums[j] >= i)
                 {
                     dp[i] = true;
-                //Yes!,we can reach the ith position from present jth position
                     break;
                 }
             }

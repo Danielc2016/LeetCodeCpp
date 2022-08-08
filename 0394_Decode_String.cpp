@@ -44,3 +44,42 @@ public:
 
     }
 };
+
+
+//Recursion Approach
+class Solution {
+public:
+    string decodeString(string s) {
+        int start = 0;
+        string str = buildString(start, s);
+        return str;
+    }
+    string buildString(int& i, string s)
+    {
+        string res = "";
+        //string nextIt = "";
+        int num = 0;
+        for( ; i < s.length(); i++)
+        {
+            if(s[i] >= '0' && s[i] <= '9')
+            {
+                num = num * 10 + (s[i] - '0');
+            }
+            else if(s[i] == '[')
+            {
+                //TODO
+                string nextIt = buildString(++i, s);
+                for(;num>0;num--) res+=nextIt;
+            }
+            else if(s[i] == ']')
+            {
+                return res;
+            }
+            else
+            {
+                res += s[i];
+            }
+        }
+        return res;
+    }
+};

@@ -5,13 +5,15 @@ public:
         bool res = false;
         vector<vector<int>> visited( maze.size(), vector<int>(maze[0].size(), 0));
         visited[start[0]][start[1]] = 1;
-        walk(maze, start[0], start[1], visited, destination, res);
+        vector<vector<int>> dirs_ = {{-1,0},{0,1},{1,0},{0,-1}};
+        walk(maze, start[0], start[1], visited, dirs_, destination, res);
         return res;
     }
     
 
     void walk(vector<vector<int>>& maze, int i, int j,
               vector<vector<int>>& visited,
+              vector<vector<int>>& dirs_,
               vector<int>& destination, bool& pass)
     {
         //exit statement
@@ -22,7 +24,6 @@ public:
             pass = true;
             return;
         }
-        vector<vector<int>> dirs_ = {{-1,0},{0,1},{1,0},{0,-1}};
         for(auto& ele : dirs_)
         {
             int x = i, y = j;
@@ -37,7 +38,7 @@ public:
             if(!visited[x][y])
             {
                 visited[x][y] = 1;
-                walk(maze, x, y, visited, destination, pass);
+                walk(maze, x, y, visited, dirs_, destination, pass);
             }
         }
     }
